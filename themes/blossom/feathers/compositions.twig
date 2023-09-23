@@ -1,0 +1,20 @@
+{% extends "content" ~ DIR ~ "post.twig" %}
+
+{% block content %}
+{% if post.title is not empty %}
+<h2 class="post_title">
+<a href="{{ post.url() }}" rel="bookmark" title="{{ 'Permanent link to &#8220;%s&#8221;' | translate | format(post.title | striptags | normalize | fix(true)) }}">{{ post.title }}</a>
+</h2>
+{% endif %}
+<section><h3 class="post_byline">
+<a href="{{ url('author/' ~ post.author.id) }}">{{ "Written by %s" | translate | format(post.author.name) }}</a>
+</h3></section>
+<blockquote class="compositions">{{ post.compositions }}</blockquote>
+<aside>
+{% if post.source is empty %}
+<p>An.</p></aside>
+{% endif %}
+{% if post.source is not empty %}
+{{ post.source }}</aside>
+{% endif %}
+{% endblock %}
