@@ -9,6 +9,11 @@
 <section><h3 class="post_byline">
 <a href="{{ url('author/' ~ post.author.id) }}">{{ "Written by %s" | translate | format(post.author.name) }}</a>
 </h3></section>
+{% if (module_enabled("postupdated")) %}
+{% if post.updated is not empty %}
+<section class="postupdated"><h3><span class="updated">{{ "Post updated:" | translate }}</span>&nbsp;&nbsp;&nbsp;{{ post.updated_at }}</h3></section>
+{% endif %}
+{% endif %}
 <blockquote class="compositions">{{ post.compositions }}</blockquote>
 <aside>
 {% if post.source is empty %}
